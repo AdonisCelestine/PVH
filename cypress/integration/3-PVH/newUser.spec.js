@@ -37,6 +37,7 @@ context('Assertions', () => {
                 it('.should() - create an user and add an address', () => {
                     cy.createUser(email);
                     cy.get('.my-account__title').should('exist')
+                    //Disable the pop-up that may appear anytime
                     cy.intercept('POST', 'https://th-beacon.prd.b2cecom.eu.pvh.cloud*',{
                      statusCode: 200,
                      body: {
