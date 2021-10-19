@@ -33,11 +33,15 @@ context('Assertions', () => {
                 cy.get('.my-account__title').should('exist')
             })
 
-            describe('Case 2: New User Registration - Success', () => {
-                it('.should() - create an user', () => {
+            describe('Case 3: New User Registration - and modify address Success', () => {
+                it('.should() - create an user and add an address', () => {
                     cy.createUser(email);
-                    cy.get('.my-account__title').should('exist');
-                    cy.get('.newsletter__close').click();
+                    cy.get('.my-account__title').should('exist')
+                    cy.intercept('POST', 'https://th-beacon.prd.b2cecom.eu.pvh.cloud*',{
+                     statusCode: 200,
+                     body: {
+                     },
+                     })
                     cy.get('[data-testid="/myaccount/addressbook?storeId=30019&langId=31&catalogId=10158"]').click();
                     cy.get('[data-testid=address-add-button]').click();
                     cy.get('#firstName').clear();
@@ -49,6 +53,9 @@ context('Assertions', () => {
                     cy.get('#zipCode').type('3561 VD');
                     cy.get('#country').select('Nederland')
                     cy.get('[data-testid=address-save-button]').click();
+                    cy.get('#address1').should('have.value', 'Hildebranddreef');
+                    cy.get('#address2').should('have.value', '1');
+                    cy.get('#city').should('have.value','Utrecht')
 
                 })
 
