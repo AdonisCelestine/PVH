@@ -1,0 +1,9 @@
+{
+"baseUrl":"https://nl.tommy.com/",
+"viewportWidth": 1920,
+"viewportHeight": 1080,
+"experimentalStudio": true,
+"defaultCommandTimeout": 50000,
+"requestTimeout": 50000,
+"chromeWebSecurity": false
+}
